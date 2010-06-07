@@ -1,0 +1,5 @@
+A meta-circular scheme implementation, heavily influenced by SICP lecture 7A:
+
+http://www.youtube.com/watch?v=0m6hoOelZH8&feature=PlayList&p=22EF5A85092A3CC5&playnext_from=PL&playnext=1&index=14
+
+It should run with PLT/mzscheme.  It is tested with schemeunit.
