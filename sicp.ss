@@ -54,14 +54,14 @@
 ;           (b y)))))
 ;
 ; scope:
-;  '((b y)
-;    (a x)
-;    (y 20)
-;    (x 10))
+;  '((b . y)
+;    (a . x)
+;    (y . 20)
+;    (x . 10))
 ;
 ; empty scopes are not stored on the stack
 ;
-; (bind '(x y) '(a b) '((a 10) (b 20)))
+; (bind '(x . y) '(a . b) '((a . 10) (b . 20)))
 (define empty?
   (lambda (lst)
     (eq? lst '())))
@@ -80,8 +80,7 @@
 (define cons-pair
   (lambda (key value lst)
     (cons
-     (cons key
-           (cons value '()))
+     (cons key value)
      lst)))
 
 (define evcond
@@ -108,7 +107,7 @@
       (let ((first-pair (car env))
             (other-pairs (cdr env)))
         (let ((variable (car first-pair))
-              (value    (car (cdr first-pair))))
+              (value    (cdr first-pair)))
           (cond
            ((eq? variable expr)
             (eval value env))

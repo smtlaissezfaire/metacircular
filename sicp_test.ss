@@ -61,29 +61,29 @@
 
 ; bound variables
 (check-equal? (eval 'foo
-                    '((foo #t)))
+                    '((foo . #t)))
               #t
               "it should have a bound variable")
 
 (check-equal? (eval 'foo
-                    '((foo #f)))
+                    '((foo . #f)))
               #f
               "it should use the correct value for the bound variable")
 
 (check-equal? (eval 'bar
-                    '((bar #f)))
+                    '((bar . #f)))
               #f
               "it should use the correct bound variable for the bound variable")
 
 (check-equal? (eval 'foo
-                    '((bar #f)
-                      (foo #t)))
+                    '((bar . #f)
+                      (foo . #t)))
               #t
               "it shouldn't have to be the first on the stack")
 
 (check-equal? (eval 'foo
-                    '((bar #f)
-                      (foo (quote foo))))
+                    '((bar . #f)
+                      (foo . (quote foo))))
               'foo
               "it should use the correct value for the variable when not on the top of the stack")
 
@@ -106,7 +106,7 @@
               "it should eval the body of the function")
 
 (check-equal? (eval '((lambda () x))
-                    '((x #t)))
+                    '((x . #t)))
               #t
               "it should eval the body of the function with variables from the outer scope")
 
