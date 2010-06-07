@@ -2,7 +2,7 @@
 #lang scheme/base
 
 (require (planet schematics/schemeunit:3)
-         "sicp.scm")
+         "sicp.ss")
 
 ; test the framework
 (check-equal? #t #t "true is true")
