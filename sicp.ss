@@ -36,10 +36,10 @@
 ;     env)
 (define apply
   (lambda (internal-fun args)
-    (letrec ((fun (car (cdr internal-fun)))
-             (formal-params (car fun))
-             (body (car (cdr fun)))
-             (env (car (cdr (cdr internal-fun)))))
+    (let* ((fun (car (cdr internal-fun)))
+           (formal-params (car fun))
+           (body (car (cdr fun)))
+           (env (car (cdr (cdr internal-fun)))))
       (eval body (bind formal-params args env)))))
 
 ; symbols are stored as a stack, with each
@@ -88,10 +88,10 @@
     (cond
      ((eq? lst '()) '())
      (else
-      (letrec ((branch1 (car lst))
-               (branch2 (cdr lst))
-               (condition (car branch1))
-               (target (car (cdr branch1))))
+      (let* ((branch1 (car lst))
+             (branch2 (cdr lst))
+             (condition (car branch1))
+             (target (car (cdr branch1))))
         (cond
          ((eq? condition #t) target)
          ((eq? condition 'else) target)
