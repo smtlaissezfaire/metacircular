@@ -104,15 +104,15 @@
      ((eq? env '())
       (raise "unbound symbol"))
      (else
-      (let ((first-pair (car env))
-            (other-pairs (cdr env)))
-        (let ((variable (car first-pair))
-              (value    (cdr first-pair)))
-          (cond
-           ((eq? variable expr)
-            (eval value env))
-           (else
-            (lookup-symbol expr other-pairs)))))))))
+      (let* ((first-pair (car env))
+             (other-pairs (cdr env))
+             (variable (car first-pair))
+             (value    (cdr first-pair)))
+        (cond
+         ((eq? variable expr)
+          (eval value env))
+         (else
+          (lookup-symbol expr other-pairs))))))))
 
 
 (provide eval)
